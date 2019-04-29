@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "WheelTimer.h"
+#include "WheelTimer2.h"
 #include "LinkedListApi.h"
 #include <string.h>
 
@@ -41,6 +41,9 @@ main(int argc, char **argv){
                            strlen("Nikhil"), 
                            12,  /*wrapper_print_hello fn will be called after every 5 seconds*/
                            1); /*1 indefinitely, 0 only once : call for wrapper_print_hello*/
+
+    sleep(20);
+    de_register_app_event(wt, wt_elem);
    
     scanf("\n");
     return 0;

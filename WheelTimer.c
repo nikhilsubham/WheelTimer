@@ -67,6 +67,7 @@ static void* wheel_fn(void* arg){
                          int next_slot_no      =  slot_no_for_elem % wt->wheel_size;
                          int cycle_no          =  slot_no_for_elem/ wt->wheel_size;
                          elem -> execution_cycle_no = cycle_no;
+                         elem -> slot_number = next_slot_no;
 
                          if(next_slot_no == wt->current_wheel_needle){
                                 ITERATE_LIST_CONTINUE2(slot_list, head1, prev_node);
@@ -113,11 +114,20 @@ slot_event_elem* register_app_event(wheel_timer_t* wt, app_call_back app_callbac
   int slot_no           =  slot_no_for_elem % wt->wheel_size;
   int cycle_no          =  slot_no_for_elem/ wt->wheel_size;
   elem -> execution_cycle_no = cycle_no;
+  elem -> slot_number = slot_no;
   singly_ll_add_node_by_val(wt->slots[slot_no], elem);
   return elem;
 }
 
 
+void
+de_register_app_event(wheel_timer_t *wt, struct _wheeel_timer_slot_event *wt_elem){
+
+   int slot_num = wt_elem -> slot_number;
+   ll_t* slot_list = wt->slots[slot_num];
+   singly_ll_delete_node_by_data_ptr(slot_list,wt_elem);
+   
+}
 
 
 

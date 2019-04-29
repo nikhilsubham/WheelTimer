@@ -10,6 +10,7 @@ typedef void (*app_call_back)(void *arg, int sizeof_arg);
 struct _wheeel_timer_slot_event{
      int time_interval;
      int execution_cycle_no;
+     int slot_number;
      app_call_back app_callback;
      void* args;
      int size_of_args;
